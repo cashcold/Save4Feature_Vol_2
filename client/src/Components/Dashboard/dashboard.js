@@ -92,7 +92,6 @@ export class DashBoard extends Component {
         localStorage.clear();
     }
     render() { 
-        const id = this.state.id;
         const {full_Name,user_Name,ip_address,bitcoin,bitcoinCash,ethereum,date,accountBalance,activetDeposit} = this.context;
        
         return ( 
@@ -148,7 +147,7 @@ export class DashBoard extends Component {
                             <div className='infoDash'>
                                 <p>ACCOUNT BALANCE</p>
                                 <p className='balanceMe'>${accountBalance}</p> 
-                                 <a href={`/withdraw/${id}`} className='btn btn-warning'>REQUEST PAYMENT</a>
+                                 <a href={`/withdraw/${this.state.id}`} className='btn btn-warning'>REQUEST PAYMENT</a>
                             </div>
                             <div className='infoImg'>
                                 <img src={require('../../pic/wallet.png')}/>

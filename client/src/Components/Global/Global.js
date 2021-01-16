@@ -24,22 +24,22 @@ export class GlobalUser extends Component {
 
    
     componentDidMount(){
-        // const token = localStorage.getItem('x-access-token')
-        // const decoded = jwt_decode(token)
-        // this.setState({
-        //     full_Name: decoded.full_Name,
-        //     user_Name: decoded.user_Name,
-        //     email: decoded.email,
-        //     bitcoin: decoded.bitcoin,
-        //     bitcoinCash: decoded.bitcoinCash,
-        //     ethereum: decoded.ethereum,
-        //     ip_address: decoded.ip_address,
-        //     date: decoded.date,
-        //     accountBalance: decoded.accountBalance,
-        //     activetDeposit: decoded.activetDeposit
+        const token = localStorage.getItem('x-access-token')
+        const decoded = jwt_decode(token)
+        this.setState({
+            full_Name: decoded.full_Name,
+            user_Name: decoded.user_Name,
+            email: decoded.email,
+            bitcoin: decoded.bitcoin,
+            bitcoinCash: decoded.bitcoinCash,
+            ethereum: decoded.ethereum,
+            ip_address: decoded.ip_address,
+            date: decoded.date,
+            accountBalance: decoded.accountBalance,
+            activetDeposit: decoded.activetDeposit
 
 
-        // })   
+        })   
     }
  
    

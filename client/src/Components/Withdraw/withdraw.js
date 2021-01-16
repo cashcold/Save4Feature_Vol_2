@@ -42,7 +42,7 @@ class WithdrawNow extends Component {
         {toast.success(`Payment of $${this.state.beforeAccountBalance} Have sent to you ${this.state.bitcoin}`)},800)
 
         const Withdraw = {
-            accountbalance: this.state.accountBalance,
+            accountBalance: this.state.accountBalance,
             zero_accountBalance: this.state.zero_accountBalance,
             user_Name: this.state.user_Name,
             bitcoin: this.state.bitcoin,
@@ -51,7 +51,7 @@ class WithdrawNow extends Component {
             ethereum: this.state.ethereum,
         }
         const id  = this.props.match.params.id
-        axios.post(`http://localhost:8000/users/withdraw/5fcf92951e91f135d804dc5b`,Withdraw).then(res => {toast.success("Account Update") })
+        axios.post(`http://localhost:8000/users/withdraw/${id}`,Withdraw).then(res => {toast.success("Account Update") })
         console.log(Withdraw)
         
     }
@@ -63,7 +63,6 @@ class WithdrawNow extends Component {
         // },5000)
     }
     componentDidMount(){
-       
         
         const token = localStorage.getItem('x-access-token')
         const decoded = jwt_decode(token)
@@ -103,6 +102,7 @@ class WithdrawNow extends Component {
     }
    
     render() { 
+        console.log(this.state.accountBalance)
         return ( 
             <div className='mainWidthDraw'>
                 <div className='withdraw'>
