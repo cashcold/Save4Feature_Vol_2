@@ -1,0 +1,42 @@
+.GridArea{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-area: 
+    'mynav mynav mynav mynav'
+    'sidebar mymain mymain mymain'
+    'sidebar content1 content2 content3'
+    'sidebar footer footer footer';
+    
+}
+#mynav{
+    background-color: blueviolet;
+    grid-area: mynav;
+   
+}
+#mymain{
+    background-color: brown;
+    grid-area: mymain;
+
+}
+#sidebar{
+    background-color: coral;
+    grid-area: sidebar;
+}
+#content1{
+    background-color: cornflowerblue;
+    grid-area: content1;
+}
+#content2{
+    background-color: rgb(136, 240, 116);
+    grid-area: content2;
+}
+#content3{
+    background-color: rgb(230, 116, 240);
+    grid-area: content3;
+}
+#footer{
+    background-color: crimson;
+    grid-area: footer ;
+}

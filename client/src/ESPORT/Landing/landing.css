@@ -1,0 +1,159 @@
+.mainLanding_1{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+   
+}
+.landingImg img{
+    width: 80%;
+    padding: 0 2rem;
+}
+
+.landingA{
+    width: 100%;
+    min-height: 70vh;
+    background-color: rgb(207, 150, 150);
+}
+
+.landingText{
+    width: 70%;
+    margin-top: 5rem;
+}
+.landingText{
+    color: blanchedalmond;
+}
+.landingText span{
+color: black;
+}
+
+.landingText p{
+    color: black;
+    line-height: 2.5rem;
+}
+
+.landingProp .btn{
+    padding: 0.2rem 5rem;
+    transition: all 1s ease-in-out;
+}
+
+.landingProp .btn:hover{
+    letter-spacing: 0.5rem;
+    
+    background-color: rgb(241, 26, 26);
+    color: white;
+}
+.bandImg img{
+    width: 100%;
+}
+
+.banding_1{
+    margin: 10% 0;
+    padding: 0 10rem;
+}
+.banding_1{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+
+.motorHight{
+    height: 358px;
+}
+.fuaturePro img{
+width: 100%;
+}
+.feature{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
+.featureProduct{
+    margin: 70px 0;
+    position: relative;
+}
+.featureH1{
+    margin-bottom: 50px;
+}
+.featureH1::before{
+    content: '';
+    width: 50px;
+    height: 5px;
+    background-color: red;
+    position: absolute;
+    margin: -8px -40px;
+}
+.featureH1::after{
+    content: '';
+    width: 50px;
+    height: 5px;
+    background-color: rgb(247, 3, 3);
+    position: absolute;
+    margin-bottom: 200px;
+    margin: 40px 0;
+}
+.fuaturePro{
+    padding: 0 2rem;
+    transition: transform 0.5s;
+}
+.startRating .fa{
+    color: rgb(202, 22, 22);
+}
+.featMachImg{
+    height: 390px;
+}
+
+.fuaturePro:hover{
+    transform: translateY(-5px);
+}
+.textMon_1 img{
+    width: 50%;
+    border-radius: 100%;
+}
+.textMon_1{
+    width: 100%;
+    padding: 0 3rem;
+}
+.testimon{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    padding: 0 3rem;
+}
+
+
+@media screen and (max-width: 800px){
+    .mainLanding_1{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .landingImg img{
+        width: 100%;
+        
+    padding: 0 1rem;
+    }
+    .landingText{
+        width: 100%;
+        margin-top: 5rem;
+        padding: 0 2rem;
+    }
+    .banding_1{
+        margin: 100px 0;
+    }
+    .banding_1{
+        margin: 10% 0;
+        padding: 0 2rem;
+    }
+    .banding_1{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    .feature{
+    
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        grid-gap: 20px;
+    }
+    .testimon{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+    
+}

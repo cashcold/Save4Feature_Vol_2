@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+p{
+    font-size: 1.5rem;
+}
+body{
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    background-color: #edeaed;
+    background: rgb(255,214,23);
+    background: linear-gradient(90deg, rgba(255,214,23,1) 21%, rgba(228,193,35,1) 39%, rgba(144,132,83,1) 66%);
+}
+
+.mainApp{
+    margin-bottom: 100%
+}
+
+
+ 
+/* <Route path='/checkapi' exact component={CheckApi}/> 
+<Route path='/apilist' exact component={ApiList}/> 
+<Route path='/gridarea' exact component={GridArea}/> 
+<Route path='/landing' exact component={LandingPage}/>  */
