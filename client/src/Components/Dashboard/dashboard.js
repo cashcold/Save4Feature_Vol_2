@@ -24,16 +24,19 @@ export class DashBoard extends Component {
             date: '',
             accountBalance: '',
             activetDeposit: '',
-            login: ''
+            login: '',
+            plan: ''
          }
          this.LogoutNow = this.LogoutNow.bind(this)
     }
 
     componentDidMount(){ 
+        const plan = localStorage.getItem("plan")
         const token = localStorage.getItem('x-access-token')
         const decoded = jwt_decode(token)
         this.setState({
             id: decoded.user_id,
+            plan,
 
 
         }) 
@@ -92,7 +95,7 @@ export class DashBoard extends Component {
         localStorage.clear();
     }
     render() { 
-        const {full_Name,user_Name,ip_address,bitcoin,bitcoinCash,ethereum,date,accountBalance,activetDeposit} = this.context;
+        const {full_Name,user_Name,ip_address,bitcoin,bitcoinCash,ethereum,date,accountBalance,activetDeposit,plan} = this.context;
        
         return ( 
             <div className='dashboardMain'>     
@@ -104,7 +107,7 @@ export class DashBoard extends Component {
                     <div className='dashLinks'>
                         <div className='dashMainLinks'>
                             <ul className='dashlinkNow animate__animated animate__bounce '>
-                                <li><a href=''>DASHBOARD</a></li>
+                                <li><a href=''>DASHBOARD </a></li>
                                 
                                 <li><a href='/deposit'>DEPOSIT</a></li>
                                 <li><a href=''>YOUR  DEPOSIT</a></li>

@@ -18,12 +18,16 @@ export class GlobalUser extends Component {
             accountBalance: '',
             activetDeposit: '',
             login: '',
+            plan: '',
+            depositAmoun: ''
          }
     }
 
 
    
     componentDidMount(){
+        const plan = localStorage.getItem('plan')
+        
         const token = localStorage.getItem('x-access-token')
         const decoded = jwt_decode(token)
         this.setState({
@@ -36,7 +40,9 @@ export class GlobalUser extends Component {
             ip_address: decoded.ip_address,
             date: decoded.date,
             accountBalance: decoded.accountBalance,
-            activetDeposit: decoded.activetDeposit
+            activetDeposit: decoded.activetDeposit,
+            plan,
+        
 
 
         })   

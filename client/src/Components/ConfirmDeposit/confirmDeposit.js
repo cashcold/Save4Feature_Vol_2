@@ -4,31 +4,61 @@ import './style.css'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import jwt_decode from 'jwt-decode'
+import { GlobalUserContext } from '../Global/Global';
 class ConfirmDeposit extends Component {
+    static contextType = GlobalUserContext;
     constructor(props) {
         super(props);
         this.state = { 
             plan: '',
             depositAmount: '',
-            walletAddress: '',
-            user_Name: ''
+            user_Name: '',
+            bitcoin: '',
+            bitcoinCash: '',
+            ethereum: ''
         }
         this.onSubmit = this.onSubmit.bind(this)
        
     }
 
     componentDidMount(){
-        const PlanSelect = sessionStorage.getItem('PlanSelect')
-        const DepositAmount = sessionStorage.getItem('DepositAmount')
-        const WalletAddress = sessionStorage.getItem('WalletAddress')
-        const user_Name = sessionStorage.getItem('user_Name')
+        const plan = localStorage.getItem("plan")
+        const depositAmount = localStorage.getItem("depositAmount")
+       
 
+        const token = localStorage.getItem('x-access-token')
+        const decoded = jwt_decode(token)
         this.setState({
-            plan: PlanSelect,
-            depositAmount: DepositAmount,
-            walletAddress: WalletAddress,
-            user_Name: user_Name,
-        })
+            user_Name: decoded.user_Name,
+            email: decoded.email,
+            bitcoin: decoded.bitcoin,
+            bitcoinCash: decoded.bitcoinCash,
+            ethereum: decoded.ethereum,
+            ip_address: decoded.ip_address,
+            plan,
+            depositAmount,
+            // depositAmoun,
+
+
+
+        }) 
+
+
+
+
+
+        // const PlanSelect = sessionStorage.getItem('PlanSelect')
+        // const DepositAmount = sessionStorage.getItem('DepositAmount')
+        // const WalletAddress = sessionStorage.getItem('WalletAddress')
+        // const user_Name = sessionStorage.getItem('user_Name')
+
+        // this.setState({
+        //     plan: PlanSelect,
+        //     depositAmount: DepositAmount,
+        //     walletAddress: WalletAddress,
+        //     user_Name: user_Name,
+        // })
     }
 
     
@@ -36,17 +66,20 @@ class ConfirmDeposit extends Component {
        const NewDeposit = {
            plan: this.state.plan,
            depositAmount: this.state.depositAmount,
-           walletAddress: this.state.walletAddress,
-           user_Name: this.state.user_Name
+           user_Name: this.state.user_Name,
+           bitcoin: this.state.bitcoin,
+           bitcoinCash: this.state.bitcoinCash,
+           ethereum: this.state.ethereum
 
        }
-       axios.post( "http://localhost:8000/users/deposit",NewDeposit).then(res => {toast.success('...Waiting for Blockchain confirmation')}).then(res => setTimeout(()=>{
-            window.location='/dashboard'
-       },8000))
-
        console.log(NewDeposit)
+       axios.post( "http://localhost:8000/users/deposit",NewDeposit).then(res => {toast.success('...Waiting for Blockchain confirmation')}).then(res => setTimeout(()=>{
+            // window.location='/dashboard'
+       },1200))
+
    }
     render() { 
+       
         return(
             <div className='confirm'>
                 <div className='confirmDepositNow'>

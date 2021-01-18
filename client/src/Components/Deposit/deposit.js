@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './style.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
 import ConfirmDeposit from '../../Components/ConfirmDeposit/confirmDeposit'
+import jwt_decode from 'jwt-decode'
 
 class Deposit extends Component {
     constructor(props) {
@@ -11,8 +13,11 @@ class Deposit extends Component {
         this.state = { 
             planNow: '',
             depositAmount: '',
-            walletAddress: '',
-            user_Name: ''
+            user_Name: '',
+            bitcoin: '',
+            bitcoinCash: '',
+            ethereum: ''
+
          }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -23,6 +28,25 @@ class Deposit extends Component {
         this.setState({[input]: event.target.value})
     }
     componentDidMount(){
+
+        const token = localStorage.getItem('x-access-token')
+        const decoded = jwt_decode(token)
+        this.setState({
+            user_Name: decoded.user_Name,
+            email: decoded.email,
+            bitcoin: decoded.bitcoin,
+            bitcoinCash: decoded.bitcoinCash,
+            ethereum: decoded.ethereum,
+            ip_address: decoded.ip_address,
+            date: decoded.date,
+            accountBalance: decoded.accountBalance,
+            activetDeposit: decoded.activetDeposit
+
+
+        }) 
+
+
+
         document.querySelector('.planBtn1').addEventListener('click',()=>{
             {toast.success("INVESTMENT PLAN 1")}
         })
@@ -40,12 +64,16 @@ class Deposit extends Component {
     onSubmit = (event)=>{
         event.preventDefault()
         const DepositForm = {
-            planNow: this.state.planNow,
+            user_Name: this.state.user_Name,
+            plan: this.state.planNow,
             depositAmount: this.state.depositAmount,
-            walletAddress: this.state.walletAddress
-
+            bitcoin: this.state.bitcoin,
+            bitcoinCash: this.state.bitcoinCash,
+            ethereum: this.state.ethereum
+           
+ 
         }
-        if(!DepositForm.planNow){
+        if(!DepositForm.plan){
             toast.warn('Please Select Plan')
             return false
         }
@@ -53,27 +81,28 @@ class Deposit extends Component {
             toast.warn('Amount to Deposit')
             return false
         }
-        if(!DepositForm.walletAddress){
+        if(!DepositForm.bitcoin || !DepositForm.bitcoinCash || !DepositForm.ethereum){
             toast.warn('Spend funds from')
             return false
         }
 
         
 
-        localStorage.setItem('PlanSelect', this.state.planNow)
-        localStorage.setItem('DepositAmount', this.state.depositAmount)
-        localStorage.setItem('WalletAddress', this.state.walletAddress)
+        localStorage.setItem("plan", this.state.planNow)
+        localStorage.setItem("depositAmount", this.state.depositAmount)
         
-        toast.warning('Confirm Payment')
-        setTimeout(()=>{
+
+        axios.post( "http://localhost:3000/users/deposit",DepositForm).then(setTimeout(()=>{
             window.location='/confirmDeposit'
-        },700)
+        },1500))
+        toast.warning('Confirm Payment')
+        
     }
     render() { 
         return ( 
             <div className='mainDeposit'>
                 <div className='hideComponent'>
-                    <ConfirmDeposit Plan={this.state.planNow} depositAmount={this.state.depositAmount} walletAddress={this.state.walletAddress}/>
+                    <ConfirmDeposit plan={this.state.plan} depositAmount={this.state.depositAmount} walletAddress={this.state.walletAddress}/>
                 </div>
                 <div className='deposit'>
                     <div className='supportHeaderDeposite '>

@@ -13,8 +13,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    walletAddress: {
-        type: String
+    bitcoin: {
+        type: String,
+    },
+    bitcoinCash: {
+        type: String,
+    },
+    ethereum: {
+        type: String,
     }
     ,
     Date:{

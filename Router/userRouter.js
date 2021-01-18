@@ -189,7 +189,10 @@ Router.post('/deposit', async(req,res)=>{
         user_Name: req.body.user_Name,
         plan: req.body.plan,
         depositAmount: req.body.depositAmount,
-        walletAddress: req.body.walletAddress
+        bitcoin: req.body.bitcoin,
+        bitcoinCash: req.body.bitcoinCash,
+        ethereum: req.body.ethereum
+
     })
 
     await UserDepositNow.save()
