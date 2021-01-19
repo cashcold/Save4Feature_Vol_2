@@ -33,7 +33,7 @@ class LoginMain extends Component {
             toast.warning('Enter Password')
         }
         event.preventDefault()
-        axios.post( "http://localhost:3000/users/login",userLogin).then(res => {
+        axios.post( "http://localhost:3000/users/login",userLogin).then(res => { 
             localStorage.setItem('x-access-token',JSON.stringify(res.data))
             return res.data;
         }).then(res => {toast.success("Login Successful !", setTimeout(()=>{

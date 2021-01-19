@@ -31,6 +31,12 @@ export class DashBoard extends Component {
     }
 
     componentDidMount(){ 
+        const RefreshToken = localStorage.getItem('RefreshToken')
+        if(RefreshToken){
+            localStorage.removeItem('x-access-token')
+            localStorage.setItem('x-access-token',RefreshToken)
+        }
+
         const plan = localStorage.getItem("plan")
         const token = localStorage.getItem('x-access-token')
         const decoded = jwt_decode(token)
@@ -92,7 +98,7 @@ export class DashBoard extends Component {
     }
     LogoutNow = ()=>{
         localStorage.removeItem('x-access-token');
-        localStorage.clear();
+        localStorage.clear(); 
     }
     render() { 
         const {full_Name,user_Name,ip_address,bitcoin,bitcoinCash,ethereum,date,accountBalance,activetDeposit,plan} = this.context;
@@ -204,7 +210,7 @@ export class DashBoard extends Component {
                     <div className='reffDashMe'>
                         <div className='reffLinkDash'> 
                             <h3>REFERRAL LINK</h3>
-                            <p>http://localhost:3000/?ref={this.state.user_Name}</p>
+                            <p>http://localhost:3000/?ref={user_Name}</p>
                         </div>
                     </div>
                     <div className='lastDash'>

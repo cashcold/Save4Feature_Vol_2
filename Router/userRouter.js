@@ -227,6 +227,28 @@ Router.post('/withdraw/:id', async(req,res)=>{
 })
 await WithdrawNow.save()
 
+const userUpdate = await User.findById(req.params.id);
+if(userUpdate){
+    
+}
+const payload = {
+    user_id: user._id,
+    full_Name: user.full_Name,
+    user_Name: user.user_Name,
+    email: user.email,
+    password: user.password,
+    bitcoin: user.bitcoin,
+    bitcoinCash: user.bitcoinCash,
+    ethereum: user.ethereum,
+    ip_address: user.ip_address,           
+    date: user.Date,
+    accountBalance: user.accountBalance,
+    activetDeposit: user.activetDeposit,
+    date: user.date
+}
+const RefreshToken = jwt.sign(payload, process.env.RefreshToken)
+res.header('RefreshToken', RefreshToken)
+
 var mailgun = require('mailgun-js')({apiKey: process.env.API_key, domain: process.env.API_baseURL});
 var data = {
     from: 'PayItForward <payitforwardisnvestmentlimited@gmail.com>',
@@ -238,9 +260,8 @@ mailgun.messages().send(data, function (error, body) {
     console.log(body);
 });
 
-res.send('Payment send to Account Wallet')
-
-   })
+res.send(RefreshToken)
+ })
 
 
 

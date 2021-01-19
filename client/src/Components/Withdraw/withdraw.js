@@ -41,7 +41,10 @@ class WithdrawNow extends Component {
         setTimeout(()=>
         {toast.success(`Payment of $${this.state.beforeAccountBalance} Have sent to you ${this.state.bitcoin}`)},800)
 
-        const Withdraw = {
+        // localStorage.removeItem('token')
+        
+
+        const Withdraw = { 
             accountBalance: this.state.accountBalance,
             zero_accountBalance: this.state.zero_accountBalance,
             user_Name: this.state.user_Name,
@@ -51,8 +54,14 @@ class WithdrawNow extends Component {
             ethereum: this.state.ethereum,
         }
         const id  = this.props.match.params.id
-        axios.post(`http://localhost:8000/users/withdraw/${id}`,Withdraw).then(res => {toast.success("Account Update") })
-        console.log(Withdraw)
+        axios.post(`http://localhost:8000/users/withdraw/${id}`,Withdraw).then(res => { 
+            localStorage.setItem('RefreshToken',JSON.stringify(res.data))
+            return res.data;
+        }).then(res => {toast.success("Account Update") }).then(setTimeout(()=>{
+            window.location='/dashboard'
+        },8000))
+
+       
         
     }
 

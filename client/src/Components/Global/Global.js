@@ -26,6 +26,7 @@ export class GlobalUser extends Component {
 
    
     componentDidMount(){
+        
         const plan = localStorage.getItem('plan')
         
         const token = localStorage.getItem('x-access-token')
@@ -46,6 +47,9 @@ export class GlobalUser extends Component {
 
 
         })   
+
+
+        
     }
  
    
