@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import './landing.css'
+import axios from 'axios'
 class LandingPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {
+            data: ''
+          }
+    }
+    componentDidMount(){
+        fetch('http://jsonplaceholder.typicode.com/users/').then( res => res.json() )
+        .then( data => {
+        this.setState({ data: data.map( coin => coin.name ) })
+        })
+
     }
     render() { 
+        console.log(this.state.data)
         return ( 
             <div className='landingPageMain'>
                 <section className='landingA'>
@@ -15,7 +26,6 @@ class LandingPage extends Component {
                        </div>
                        <div className='landingProp'>
                             <div className='landingText'>
-                                <h1>40% DISCOUNT</h1>
                                 <p>PayItForward is open to cooperate for everyone. Any individual or corporation from any nation may open an account with us, and we are happy to accept investors from wherever on the planet.</p>
                                 <p className='btn btn-warning    '>GET NOW</p>
                             </div>

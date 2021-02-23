@@ -23,6 +23,7 @@ import GridArea from './Components/GridArea/gridArea';
 import LandingPage from './ESPORT/Landing/Landing';
 import { GlobalUser } from './Components/Global/Global';
 import ThemeContextProvider from './ContextComponent/ThemeContext/ThemeContext';
+import Landing from './Components/OtherComponent/Landing/Landing';
 
 class MainApp extends Component {
     constructor(props) {
@@ -55,6 +56,8 @@ class MainApp extends Component {
                               <Route path='/forgotpassword' exact component={ForgotPassword}/> 
                               <Route path='/activitPassword/:token' exact component={ActivitPassword}/>  
                               <Route path='/withdraw/:id' exact component={WithdrawNow}/>
+                              <Route path='/landingPage' exact component={LandingPage}/>
+                              <Route path='/landing' exact component={Landing}/>
                               {/* <Route path='/deposit' exact component={Deposit}/>  */} 
                            </Switch>
                         </div>

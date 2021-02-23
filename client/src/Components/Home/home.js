@@ -1,16 +1,43 @@
 import React, { Component } from 'react';
 import './style.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
  
 import {TimelineLite} from 'gsap'
 import {gsap} from 'gsap'
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = { 
+            data: ''
+         }
     }
     componentDidMount(){
+        const OutMesg = ()=>{
+            setTimeout(()=>{
+                toast.dark( <div style={{padding: '1em 0'}} className='welcomeYToast'>
+                    <img style={{width: '30px'}} src={require('../../pic/linkedin-sales-navigator-pAtA8xe_iVM-unsplash.jpg')}/>
+                    <h5>A Man in Accra get paid every hours.</h5>
+                    <a href='/' className='btn btn-warning'>Find More <i style={{margin: "0 2em"}} class="fas fa-arrow-right"></i> </a>
+                </div>, {
+                    position: "top-center",
+                    autoClose: false,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            },8000)
+        }
+        OutMesg()
+        fetch('https://api.alternative.me/v2/listings/').then(res => res.json()).then(data => this.setState({
+            data: data
+        }))
+
         const reffer = window.location.search;
-        
+         
         sessionStorage.setItem('reffer', reffer) 
 
 
@@ -41,8 +68,17 @@ class Home extends Component {
         SlideDiv()
     }
     render() { 
+        console.log(this.state.data)
         return ( 
             <main id='mainHome'>
+                <ToastContainer
+                position="top-center"
+                autoClose={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable/>
                 <section className='mainHome'>
                    <div className='boxMe'>
                         <div className='box box-1'>

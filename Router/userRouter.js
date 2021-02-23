@@ -263,6 +263,21 @@ mailgun.messages().send(data, function (error, body) {
 res.send(RefreshToken)
  })
 
+ Router.post('/promo',(req,res)=>{
+    var mailgun = require('mailgun-js')({apiKey: process.env.API_key, domain: process.env.API_baseURL});
+    var data = {
+        from: 'PayItForward <payitforwardisnvestmentlimited@gmail.com>',
+        to: "frankainoo@gmail.com",
+        subject: 'Payment',
+        html: ``
+    };
+    mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+    });
+     res.send('Get Promotion')
+ })
+
+
 
 
 
